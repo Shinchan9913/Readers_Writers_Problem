@@ -8,7 +8,7 @@ The solution to the Readers-Writers problem presented here is a starve-free solu
 int read_count = 0;
 ```
 2. 'write_count' keeps a track of the number of active writer processes, it is initialised to zero.
-```
+```cpp
 int write_count = 0;
 ```
 3. 'read_mutex' is a binary semaphore which protects the read_count variable.
@@ -18,7 +18,7 @@ int write_count = 0;
 semaphore read_mutex=1, write_mutex=1, turn=1;
 ```
 ## Pseudocode
-```
+```cpp
 // Global variables
 int read_count = 0;
 int write_count = 0;
