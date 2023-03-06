@@ -15,22 +15,24 @@ semaphore read_mutex=1, turn=1, resource=1;
 ```
 ## Pseudocode
 ```cpp
-// Global variables
+// Initialising variables
 int read_count = 0;
 semaphore read_mutex=1, turn=1, resource=1;
 
   
 // Reader process
 void reader() {
-    wait(turn);  // Enter the queue to access the shared resource
+    wait(turn);  // Acquire turn to be the next one to enter
     wait(read_mutex);  // Lock access to the read_count variable
     read_count++;  // Increment the number of readers accessing the shared resource
     if (read_count == 1) {  // If this is the first reader, lock access to the shared resource
         wait(resource);
     }
-    signal(turn);  // Exit the queue
+    signal(turn);  // Give turn so others can acquire
     signal(read_mutex);  // Unlock access to the read_count variable
+    
     // Read from the shared resource
+    
     wait(read_mutex);  // Lock access to the read_count variable
     read_count--;  // Decrement the number of readers accessing the shared resource
     if (read_count == 0) {  // If this is the last reader, unlock access to the shared resource
@@ -41,9 +43,9 @@ void reader() {
 
 // Writer process
 void writer() {
-    wait(turn);  // Enter the queue to access the shared resource
+    wait(turn);  // Acquire turn to be next to enter
     wait(resource);  // Lock access to the shared resource
-    signal(turn);  // Exit the queue
+    signal(turn);  // Give turn so others can acquire
     
     // Write to the shared resource
    
