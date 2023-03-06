@@ -18,6 +18,16 @@ semaphore read_mutex=1, turn=1, resource=1;
 // Initialising variables
 int read_count = 0;
 semaphore read_mutex=1, turn=1, resource=1;
+### Reader process:
+- First, a reader acquires turn, so that no other resource can acquire turn.
+- Then, it locks access to the read_count variable using the read_mutex semaphore to update the number of readers currently accessing the shared resource.
+- If it is the first reader to access the shared resource, it locks access to the shared resource by waiting on the resource semaphore.
+- After it has finished reading from the shared resource, it decrements the read_count variable, and if it is the last reader, it unlocks access to the shared resource by signaling the resource semaphore.
+### Writer process:
+- First, a writer acquires turn, if there are other readers accessing the shared resource the writer will wait till all of them exit, and since it has acquired turn, all other processes will have to wait for turn.
+- It then waits on the resource semaphore to access the shared resource exclusively.
+- After it gets access to shared resource, it gives up turn for others to acquire.
+- After it has finished writing to the shared resource, it decrements the write_count variable, signals the resource semaphore to release the lock on the shared resource, and exits the queue.
 
   
 // Reader process
