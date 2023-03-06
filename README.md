@@ -3,14 +3,14 @@ The Readers-Writers problem is a classical synchronization problem, where multip
 ## Solution
 The solution to the Readers-Writers problem presented here is a starve-free solution, which means that it guarantees that no thread will have to wait indefinitely. This solution is implemented using mutexes and condition variables for synchronization
 5 variables have been used in the pseudocode: read_count, write_count, read_mutex, write_mutex, turn.
-'read_count' keeps a track of the number of active reader processes, it is initialised to zero.
+1. 'read_count' keeps a track of the number of active reader processes, it is initialised to zero.
 ```
 int read_count = 0;
 ```
-'write_count' keeps a track of the number of active writer processes, it is initialised to zero.
+2. 'write_count' keeps a track of the number of active writer processes, it is initialised to zero.
 ```
 int write_count = 0;
 ```
-'read_mutex' is a binary semaphore which protects the read_count variable.
-'write_mutex' is a binary semaphore which protects the write_count variable.
-'turn' is a semaphore used at the beginning of both the reader and writer codes. Any reader/writer has to acquire this semaphore in order to enter the critical section, each having equal priority of doing so.
+3. 'read_mutex' is a binary semaphore which protects the read_count variable.
+4. 'write_mutex' is a binary semaphore which protects the write_count variable.
+5. 'turn' is a semaphore used at the beginning of both the reader and writer codes. Any reader/writer has to acquire this semaphore in order to enter the critical section, each having equal priority of doing so.
