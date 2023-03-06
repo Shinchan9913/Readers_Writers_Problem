@@ -22,7 +22,7 @@ semaphore read_mutex=1, turn=1, resource=1;
 - First, a writer acquires turn, if there are other readers accessing the shared resource the writer will wait till all of them exit, and since it has acquired turn, any new processes will have to wait for turn.
 - It then waits on the resource semaphore to access the shared resource exclusively.
 - After it gets access to shared resource, it gives up turn for others to acquire.
-- After it has finished writing to the shared resource, it decrements the write_count variable, signals the resource semaphore to release the lock on the shared resource, and exits the queue.
+- After it has finished writing to the shared resource it signals the resource semaphore to release the lock on the shared resource.
 ## Pseudocode
 ```cpp
 // Initialising variables
