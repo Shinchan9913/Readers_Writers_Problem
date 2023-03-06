@@ -9,7 +9,7 @@ int read_count = 0;
 ```
 2. 'read_mutex' is a binary semaphore which protects the read_count variable.
 3. 'turn' is a semaphore used at the beginning of both the reader and writer codes. Any reader/writer has to acquire this semaphore in order to enter the critical section, each having equal priority of doing so.
-4. 'resource'is a semaphore which ensures that only one process can access the shared resource at a time, preventing race conditions and inconsistencies in the shared resource. It helps in ensuring mutual exclusion between readers and writers.
+4. 'resource' is a semaphore which ensures that only one process can access the shared resource at a time, preventing race conditions and inconsistencies in the shared resource. It helps in ensuring mutual exclusion between readers and writers.
 ```cpp
 semaphore read_mutex=1, turn=1, resource=1;
 ```
