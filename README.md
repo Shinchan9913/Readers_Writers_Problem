@@ -61,3 +61,6 @@ void writer() {
     signal(resource);  // Unlock access to the shared resource
 }
 ```
+## Conclusion
+To provide a starvation-free solution to this problem, a semaphore-based approach can be used, which ensures that no process waits indefinitely to access the shared resource ("turn" in this code). The provided code implements this approach, where readers can read the shared resource concurrently, while writers have exclusive access to modify the shared resource.
+This solution provides a reliable and efficient way to synchronize access to a shared resource in a multi-process or multi-threaded environment. It can be used as a template for implementing similar solutions in other contexts where mutual exclusion and starvation-free access to shared resources are essential.
